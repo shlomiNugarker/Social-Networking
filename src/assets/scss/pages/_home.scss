@@ -1,3 +1,19 @@
 .home-page {
   background-color: lightblue;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  button {
+    cursor: pointer;
+    margin: 20px 0;
+    color: white;
+    background-color: lightslategray;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 20px;
+  }
 }

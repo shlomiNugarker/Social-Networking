@@ -1,37 +1,50 @@
 import { ImgPreview } from './ImgPreview'
 import { AiOutlineLike } from 'react-icons/ai'
 import { FaRegComment } from 'react-icons/fa'
+import { useEffect } from 'react'
+import TimeAgo from 'react-timeago'
+import { utilService } from '../services/utilService'
 
-export function PostPreview() {
-  const url =
-    'https://images.unsplash.com/photo-1663050005090-86b77b8c01e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80'
+export function PostPreview({ post }) {
+  const likeStyle = post.didLike ? 'liked' : ''
+  const isTwoImgs = post.images?.length > 1 ? true : false
+
+  useEffect(() => {}, [])
 
   return (
     <section className="post-preview">
       <div className="post-header">
         <div className="img-container">
-          <img
-            src="https://images.unsplash.com/photo-1663050005090-86b77b8c01e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-            alt=""
-            className="img"
-          />
+          <img src={post.avatar} alt="" className="img" />
         </div>
         <div className="user-details">
-          <p className="name">Maria Geller</p>
+          <p className="name">{post.username}</p>
           <div>
-            <p>Crafts ideas</p>
-            <span className="time">1h</span>
+            <p className="shop-name">{post.shopName}</p>
+            <span className="time">
+              <TimeAgo date={post.date} />
+            </span>
           </div>
         </div>
       </div>
 
       <div className="post-body">
-        <p className="txt">
-          Let's get things rolling for Halloween! Dump any Halloween craft you
-          have made or bought! Getting ready for high season !
-        </p>
+        <p className="txt">{post.text}</p>
         <div className="img-list">
-          <ImgPreview url={url} />
+          {post.images && post.images[0] && (
+            <ImgPreview
+              key={utilService.makeId()}
+              url={post.images[0]}
+              isTwoImgs={isTwoImgs}
+            />
+          )}
+          {post.images && post.images[1] && (
+            <ImgPreview
+              key={utilService.makeId()}
+              url={post.images[1]}
+              isTwoImgs={isTwoImgs}
+            />
+          )}
         </div>
       </div>
 
@@ -43,14 +56,14 @@ export function PostPreview() {
           <p className="number">23</p>
         </div>
         <div>
-          <p className="number">23</p>
-          <p>comments</p>
+          {post.comments > 0 && <p className="number">{post.comments}</p>}
+          {post.comments > 0 && <p>comments</p>}
         </div>
       </div>
 
       <div className="post-actions">
         <div className="btns">
-          <div className="btn-container like-btn">
+          <div className={'btn-container like-btn ' + likeStyle}>
             <span>
               <AiOutlineLike />
             </span>

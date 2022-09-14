@@ -2,21 +2,22 @@
   width: 430px;
   position: relative;
   padding: 9px 0;
+  display: flex;
+  align-items: center;
 
   .search-icon {
     position: absolute;
-    transform: translate(50%, 50%);
     color: #666666;
+    left: 10px;
   }
 
   input {
     width: 216px;
-    // height: 40px;
     height: 100%;
     border-radius: 32px;
     border: none;
     background: #f4f5f5;
-    padding: 11px 140px 11px 12px;
+    padding: 10px 10px 10px 30px;
     line-height: 1.75;
     font-weight: 400;
     font-size: 14px;
@@ -25,7 +26,8 @@
     transition: width 0.3s;
 
     &:focus {
-      width: 380px;
+      // width: 380px;
+      outline: 1px solid $border;
     }
   }
 }

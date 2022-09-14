@@ -8,10 +8,7 @@
 // Basics
 @import 'basics/typography';
 @import 'basics/base';
-@import 'basics/helpers';
 @import 'basics/layout';
-@import 'basics/modals';
-@import 'basics/animations';
 
 // Pages
 @import 'pages/home';
@@ -29,10 +26,3 @@
 @import 'cmps/post-list';
 @import 'cmps/post-preview';
 @import 'cmps/img-preview';
-
-.temp-div {
-  position: fixed;
-  background-color: rgb(74, 74, 14);
-  z-index: 4000;
-  color: white;
-}

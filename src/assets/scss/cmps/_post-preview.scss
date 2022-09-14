@@ -1,18 +1,22 @@
 .post-preview {
   background-color: rgb(255, 255, 255);
   padding-top: 15px;
+  margin-bottom: 25px;
   border-radius: 4px;
+  border: 1px solid $border;
 
   .post-header {
     display: flex;
     align-items: center;
     padding: 0 24px;
+    margin-bottom: 15px;
     .img-container {
       .img {
         background-color: lawngreen;
         width: 44px;
         height: 44px;
         border-radius: 50%;
+        object-fit: cover;
       }
     }
 
@@ -24,10 +28,13 @@
       div {
         display: flex;
         align-items: center;
-        p {
+        .shop-name {
+          color: #0a66c2;
         }
 
         .time {
+          margin-left: 3px;
+          color: $lightTxt;
         }
       }
     }
@@ -36,9 +43,14 @@
   .post-body {
     .txt {
       padding: 0 24px;
+      margin-bottom: 15px;
     }
 
     .img-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #b8c24874;
     }
   }
 
@@ -48,18 +60,41 @@
     justify-content: space-between;
     padding: 15px 0px;
     margin: 0px 24px;
+    color: #737877;
 
     border-bottom: 1px solid #e9eaea;
     div {
+      cursor: pointer;
       display: flex;
       align-items: center;
       .like-icon {
-        margin-right: 3px;
+        padding: 2px;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          131.96deg,
+          #96dcd0 -8.63%,
+          #6ccebd -5.56%,
+          #2db8a1 35.83%,
+          #28a38f 89.48%,
+          #208171 133.94%
+        );
       }
     }
     div {
       .number {
         margin-right: 3px;
+
+        &:hover {
+          color: #0a66c2;
+          text-decoration: underline;
+        }
       }
       p {
       }
@@ -67,20 +102,31 @@
   }
 
   .post-actions {
-    padding: 0 24px;
     .btns {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       .btn-container {
-        // border: 1px solid;
         padding: 15px 0;
         width: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: 4px;
+        margin: 10px 0;
+        color: #484e4c;
+        cursor: pointer;
+        transition: all, 0.2s;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.08);
+        }
+
         &.like-btn {
+          &.liked {
+            color: #0a66c2;
+          }
         }
 
         &.comment-btn {
@@ -94,6 +140,7 @@
         button {
           border: none;
           background-color: unset;
+          color: inherit;
         }
       }
     }

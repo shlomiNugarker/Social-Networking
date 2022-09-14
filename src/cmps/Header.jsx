@@ -1,4 +1,3 @@
-import { Link, useHistory } from 'react-router-dom'
 import { InputCmp } from './InputCmp'
 import { Logo } from './Logo'
 import { NavCmp } from './NavCmp'

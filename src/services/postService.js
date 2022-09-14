@@ -1,16 +1,21 @@
 import { utilService } from './utilService.js'
 import { storageService } from './asyncStorageService.js'
 
+export const postService = {
+  query,
+  getPostsLength,
+}
+
 const STORAGE_KEY = 'posts'
 
 _createPosts()
 
-export const postService = {
-  query,
+function query(filterBy = null) {
+  return storageService.query(STORAGE_KEY, filterBy)
 }
-
-function query() {
-  return storageService.query(STORAGE_KEY)
+function getPostsLength() {
+  const posts = storageService.query(STORAGE_KEY)
+  console.log(posts)
 }
 
 function _createPosts() {
@@ -32,7 +37,7 @@ function _createPosts() {
         date: '2022-09-06T14:40:29.347Z',
         text: 'Upload the last 3 pictures of handmade items you\u2019ve made or bought!',
         likes: 2142,
-        didLike: false,
+        didLike: true,
         premium: true,
       },
       {

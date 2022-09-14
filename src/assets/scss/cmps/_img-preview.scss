@@ -1,7 +1,15 @@
 .img-preview {
   .container {
+    display: flex;
+    justify-content: center;
+
     .img {
-      height: 400px;
+      max-width: 100%;
+      max-height: 517px;
+      margin: 0 1px;
+
+      &.two-imgs {
+      }
     }
   }
 }

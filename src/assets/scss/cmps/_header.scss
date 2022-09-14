@@ -1,6 +1,10 @@
 .header {
   background-color: rgb(255, 255, 255);
   height: 58px;
+  position: fixed;
+  width: 100vw;
+  border-bottom: 1px solid $border;
+  color: $lightTxt;
 
   .container {
     display: flex;
