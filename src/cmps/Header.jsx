@@ -1,7 +1,18 @@
+import { Link, useHistory } from 'react-router-dom'
+import { InputCmp } from './InputCmp'
+import { Logo } from './Logo'
+import { NavCmp } from './NavCmp'
+
 export function Header() {
   return (
-    <section className="header">
-      <h1>Header</h1>
-    </section>
+    <header className="header ">
+      <div className="container">
+        <div className="left">
+          <Logo></Logo>
+          <InputCmp></InputCmp>
+        </div>
+        <NavCmp></NavCmp>
+      </div>
+    </header>
   )
 }

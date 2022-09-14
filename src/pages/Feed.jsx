@@ -1,7 +1,9 @@
+import { PostsList } from '../cmps/PostsList'
+
 export function Feed() {
   return (
-    <section className="feed">
-      <h1>Feed</h1>
+    <section className="feed container">
+      <PostsList />
     </section>
   )
 }

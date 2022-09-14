@@ -7,8 +7,7 @@ import { Profile } from './Profile'
 
 export function Main() {
   return (
-    <section className="main-page">
-      <h1>main-page</h1>
+    <section className="main-page ">
       <Header />
       <Switch>
         <Route path="/main/feed" component={Feed} />

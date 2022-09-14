@@ -17,15 +17,15 @@ function App() {
 
   return (
     <Router>
-      <div className="temp-div">
+      {/* <div className="temp-div">
         <Link to="/home">Home</Link>|<Link to="/main/feed">feed</Link>|-
         <Link to="/main/profile/:userId">profile</Link>|-
         <Link to="/main/messaging/:userId">messaging</Link>|-
         <Link to="/main/messaging/:userId">messaging</Link>|-
         <Link to="/main/notifications">notifications</Link>|-
-      </div>
-      <div>
-        <main className="container">
+      </div> */}
+      <div className="app">
+        <main>
           <Switch>
             <Route path="/main" component={Main} />
             <Route path="/" component={Home} />
