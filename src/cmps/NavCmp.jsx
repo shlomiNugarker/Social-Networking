@@ -1,15 +1,35 @@
+import { useState } from 'react'
 import { AiOutlineHome } from 'react-icons/ai'
-import { AiOutlineMessage } from 'react-icons/ai'
+import { AiOutlineMessage, AiOutlineMenu } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export function NavCmp() {
   const { currPage } = useSelector((state) => state.postModule)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const openMenu = () => {
+    setIsMenuOpen(true)
+  }
+  const closeMMenu = () => {
+    setIsMenuOpen(false)
+  }
   return (
     <section className="nav-cmp">
-      <ul>
-        <li className={currPage === 'home' ? 'clicked' : ''}>
+      <div className={isMenuOpen ? 'bg show-menu ' : 'bg'} onClick={closeMMenu}>
+        BG
+      </div>
+      <div className="menu" onClick={openMenu}>
+        <span>
+          <AiOutlineMenu />
+        </span>
+      </div>
+      <ul className={isMenuOpen ? 'show-menu ' : ''}>
+        <li
+          className={currPage === 'home' ? 'clicked' : ''}
+          onClick={closeMMenu}
+        >
           <Link to="/main/feed">
             <span>
               <AiOutlineHome />
@@ -17,7 +37,10 @@ export function NavCmp() {
             <p>Home</p>
           </Link>
         </li>
-        <li className={currPage === 'messaging' ? 'clicked' : ''}>
+        <li
+          className={currPage === 'messaging' ? 'clicked' : ''}
+          onClick={closeMMenu}
+        >
           <Link to="/main/messaging/:userId">
             <span>
               <AiOutlineMessage />
@@ -25,7 +48,10 @@ export function NavCmp() {
             <p>Messaging</p>
           </Link>
         </li>
-        <li className={currPage === 'notifications' ? 'clicked' : ''}>
+        <li
+          className={currPage === 'notifications' ? 'clicked' : ''}
+          onClick={closeMMenu}
+        >
           <Link to="/main/notifications">
             <span>
               <IoMdNotificationsOutline />

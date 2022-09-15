@@ -1,18 +1,45 @@
 import { ImgPreview } from './ImgPreview'
 import { AiOutlineLike } from 'react-icons/ai'
 import { FaRegComment } from 'react-icons/fa'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TimeAgo from 'react-timeago'
 import { utilService } from '../services/utilService'
+import { useDispatch } from 'react-redux'
+import { sendImpressionFromUser } from '../store/actions/postActions'
 
 export function PostPreview({ post }) {
-  const likeStyle = post.didLike ? 'liked' : ''
-  const isTwoImgs = post.images?.length > 1 ? true : false
+  const dispatch = useDispatch()
 
-  useEffect(() => {}, [])
+  const likeStyle = post.didLike ? 'liked' : ''
+  const isTwoImgs = post.images?.length > 1
+
+  const handleScroll = () => {
+    const windowHeight = window.innerHeight
+    const postHight = getPostHight()
+
+    if (postHight < windowHeight) {
+      console.log('post seen !')
+    }
+  }
+
+  useEffect(() => {
+    dispatch(sendImpressionFromUser(post.userId, post.id))
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const getPostHight = () => {
+    const bottomPostHeight = document
+      .getElementById('6319f52ed519ba15e06d72a7') // 3th post => post.id
+      .getBoundingClientRect().bottom
+
+    return bottomPostHeight
+  }
 
   return (
-    <section className="post-preview">
+    <section id={post.id} className="post-preview">
       <div className="post-header">
         <div className="img-container">
           <img src={post.avatar} alt="" className="img" />

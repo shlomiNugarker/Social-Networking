@@ -15,11 +15,7 @@ export function Feed() {
     }
   }, [])
 
-  useEffect(() => {
-    return () => {}
-  }, [posts])
-
-  if (!posts) return <div className="feed container">Loading</div>
+  if (!posts) return <div className="feed container">Loading...</div>
   return (
     <section className="feed container">
       <PostsList posts={posts} />

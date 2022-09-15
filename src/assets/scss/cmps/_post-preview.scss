@@ -88,6 +88,11 @@
       }
     }
     div {
+      &:hover {
+        color: #0a66c2;
+        text-decoration: underline;
+      }
+
       .number {
         margin-right: 3px;
 

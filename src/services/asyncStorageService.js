@@ -1,59 +1,17 @@
+import axios from 'axios'
+
 export const storageService = {
   query,
-  get,
-  post,
-  put,
-  remove,
-  postMany,
+  sendImpresion,
 }
 
 function query(entityType, filterBy = null) {
   const pageNumber = filterBy?.pageNumber
   var entities = JSON.parse(localStorage.getItem(entityType)) || []
   if (filterBy) {
-    var entities = entities.slice(pageNumber * 6, pageNumber * 6 + 6)
+    entities = entities.slice(pageNumber * 6, pageNumber * 6 + 6)
   }
   return Promise.resolve(entities)
-}
-
-function get(entityType, entityId) {
-  return query(entityType).then((entities) =>
-    entities.find((entity) => entity.id === entityId)
-  )
-}
-
-function post(entityType, newEntity) {
-  newEntity.id = _makeId()
-  return query(entityType).then((entities) => {
-    entities.push(newEntity)
-    _save(entityType, entities)
-    return newEntity
-  })
-}
-
-function postMany(entityType, newEntities) {
-  return query(entityType).then((entities) => {
-    entities.push(...newEntities)
-    _save(entityType, entities)
-    return entities
-  })
-}
-
-function put(entityType, updatedEntity) {
-  return query(entityType).then((entities) => {
-    const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
-    entities.splice(idx, 1, updatedEntity)
-    _save(entityType, entities)
-    return updatedEntity
-  })
-}
-
-function remove(entityType, entityId) {
-  return query(entityType).then((entities) => {
-    const idx = entities.findIndex((entity) => entity.id === entityId)
-    entities.splice(idx, 1)
-    _save(entityType, entities)
-  })
 }
 
 function _save(entityType, entities) {
@@ -68,4 +26,17 @@ function _makeId(length = 8) {
     text += possible.charAt(Math.floor(Math.random() * possible.length))
   }
   return text
+}
+
+function sendImpresion(userId, itemId) {
+  // axios
+  //   .post(`https://www.tedooo.com/`, {
+  //     params: { userId, itemId },
+  //   })
+  //   .then((res) => {
+  //     console.log(res)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
 }

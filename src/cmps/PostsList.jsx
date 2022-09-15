@@ -1,36 +1,37 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { utilService } from '../services/utilService'
-import { addPosts, setNextPage } from '../store/actions/postActions'
+import {
+  addPosts,
+  setNextPage,
+  setNextPageToZero,
+} from '../store/actions/postActions'
 import { PostPreview } from './PostPreview'
 
 export function PostsList({ posts }) {
   const dispatch = useDispatch()
+
   const { postsLength } = useSelector((state) => state.postModule)
 
   const onLoadPosts = () => {
-    if (postsLength === posts.length) {
-      // console.log('no more posts')
-      return
-    }
     dispatch(setNextPage())
     dispatch(addPosts())
   }
 
   const handleScroll = () => {
+    // console.log(window.innerHeight)
+    // console.log(window.pageYOffset)
     if (
-      window.scrollY + window.innerHeight + 0.5 >=
+      window.scrollY + window.innerHeight + 0.9 >=
       document.documentElement.scrollHeight
     ) {
-      dispatch(setNextPage())
-      dispatch(addPosts())
+      onLoadPosts()
     }
   }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => {
-      dispatch(setNextPage(0))
+      dispatch(setNextPageToZero())
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -41,11 +42,11 @@ export function PostsList({ posts }) {
         <PostPreview key={post.id} post={post} />
       ))}
 
-      {postsLength !== posts.length && (
+      {(postsLength !== posts.length && (
         <div className="load-more" onClick={onLoadPosts}>
           Load more
         </div>
-      )}
+      )) || <div className="load-more">No more posts...</div>}
     </section>
   )
 }

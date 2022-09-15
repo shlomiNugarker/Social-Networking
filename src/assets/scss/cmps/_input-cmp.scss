@@ -1,5 +1,5 @@
 .input-cmp {
-  width: 430px;
+  // width: 430px;
   position: relative;
   padding: 9px 0;
   display: flex;
@@ -28,6 +28,19 @@
     &:focus {
       // width: 380px;
       outline: 1px solid $border;
+    }
+  }
+}
+
+@media (max-width: 335px) {
+  .input-cmp {
+    .search-icon {
+    }
+
+    input {
+      width: 165px;
+      &:focus {
+      }
     }
   }
 }
