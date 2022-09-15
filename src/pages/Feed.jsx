@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostsList } from '../cmps/PostsList'
-import { setCurrPage } from '../store/actions/postActions'
+import { setCurrPage, setNextPageToZero } from '../store/actions/postActions'
 
 export function Feed() {
   const { posts } = useSelector((state) => state.postModule)
@@ -12,6 +12,7 @@ export function Feed() {
 
     return () => {
       dispatch(setCurrPage(''))
+      dispatch(setNextPageToZero())
     }
   }, [])
 

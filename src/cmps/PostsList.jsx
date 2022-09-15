@@ -1,11 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostPreview } from './PostPreview'
-import {
-  addPosts,
-  setNextPage,
-  setNextPageToZero,
-} from '../store/actions/postActions'
+import { addPosts, setNextPage } from '../store/actions/postActions'
 
 export function PostsList({ posts }) {
   const dispatch = useDispatch()
@@ -22,6 +18,7 @@ export function PostsList({ posts }) {
       window.scrollY + window.innerHeight + 0.9 >=
       document.documentElement.scrollHeight
     ) {
+      if (posts.length === postsLength) return
       onLoadPosts()
     }
   }
@@ -29,10 +26,9 @@ export function PostsList({ posts }) {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => {
-      dispatch(setNextPageToZero())
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [postsLength, posts.length])
 
   return (
     <section className="post-list">

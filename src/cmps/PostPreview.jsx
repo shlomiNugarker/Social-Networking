@@ -22,7 +22,7 @@ export function PostPreview({ post }) {
     if (postHight < windowHeight) {
       if (isUserWatchedPost) return
       setisUserWatchedPost(true)
-      console.log('user watch post :', post.text)
+      // console.log('user watched post :', post.text)
       dispatch(sendImpressionFromUser(post.userId, post.id))
     }
   }
