@@ -10,6 +10,8 @@ import { sendImpressionFromUser } from '../store/actions/postActions'
 export function PostPreview({ post }) {
   const dispatch = useDispatch()
 
+  const [isUserWatchedPost, setisUserWatchedPost] = useState(false)
+
   const likeStyle = post.didLike ? 'liked' : ''
   const isTwoImgs = post.images?.length > 1
 
@@ -18,21 +20,23 @@ export function PostPreview({ post }) {
     const postHight = getPostHight()
 
     if (postHight < windowHeight) {
-      console.log('post seen !')
+      if (isUserWatchedPost) return
+      setisUserWatchedPost(true)
+      console.log('user watch post :', post.text)
+      dispatch(sendImpressionFromUser(post.userId, post.id))
     }
   }
 
   useEffect(() => {
-    dispatch(sendImpressionFromUser(post.userId, post.id))
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  })
 
   const getPostHight = () => {
     const bottomPostHeight = document
-      .getElementById('6319f52ed519ba15e06d72a7') // 3th post => post.id
+      .getElementById(post.id)
       .getBoundingClientRect().bottom
 
     return bottomPostHeight

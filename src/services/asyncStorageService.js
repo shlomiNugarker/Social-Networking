@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 
 export const storageService = {
   query,
@@ -12,20 +12,6 @@ function query(entityType, filterBy = null) {
     entities = entities.slice(pageNumber * 6, pageNumber * 6 + 6)
   }
   return Promise.resolve(entities)
-}
-
-function _save(entityType, entities) {
-  localStorage.setItem(entityType, JSON.stringify(entities))
-}
-
-function _makeId(length = 8) {
-  var text = ''
-  var possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length))
-  }
-  return text
 }
 
 function sendImpresion(userId, itemId) {

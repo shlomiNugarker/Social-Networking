@@ -1,5 +1,4 @@
 .input-cmp {
-  // width: 430px;
   position: relative;
   padding: 9px 0;
   display: flex;
@@ -26,7 +25,6 @@
     transition: width 0.3s;
 
     &:focus {
-      // width: 380px;
       outline: 1px solid $border;
     }
   }

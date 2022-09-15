@@ -47,6 +47,7 @@
         margin-right: 3px;
 
         svg {
+          font-size: 20px;
         }
       }
 
@@ -105,8 +106,6 @@
 
 @media (max-width: 530px) {
   .nav-cmp {
-    // position: absolute;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,6 +135,7 @@
       justify-content: center;
       margin: 0 10px;
       cursor: pointer;
+      color: $lightTxt;
 
       svg {
         width: 30px;

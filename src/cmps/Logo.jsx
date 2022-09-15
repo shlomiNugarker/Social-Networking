@@ -44,7 +44,6 @@ export function Logo() {
           </linearGradient>
         </defs>
       </svg>
-      {/* <div className="img"></div> */}
     </section>
   )
 }

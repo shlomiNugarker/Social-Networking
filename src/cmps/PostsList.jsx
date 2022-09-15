@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { PostPreview } from './PostPreview'
 import {
   addPosts,
   setNextPage,
   setNextPageToZero,
 } from '../store/actions/postActions'
-import { PostPreview } from './PostPreview'
 
 export function PostsList({ posts }) {
   const dispatch = useDispatch()
@@ -18,8 +18,6 @@ export function PostsList({ posts }) {
   }
 
   const handleScroll = () => {
-    // console.log(window.innerHeight)
-    // console.log(window.pageYOffset)
     if (
       window.scrollY + window.innerHeight + 0.9 >=
       document.documentElement.scrollHeight

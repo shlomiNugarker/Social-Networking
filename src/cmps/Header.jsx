@@ -7,7 +7,7 @@ export function Header() {
     <header className="header ">
       <div className="container">
         <div className="left">
-          <Logo></Logo>
+          <Logo />
           <InputCmp></InputCmp>
         </div>
         <NavCmp></NavCmp>
