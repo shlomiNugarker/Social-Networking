@@ -6,20 +6,28 @@ import { Feed } from './Feed'
 import { Messaging } from './Messaging'
 import { Notifications } from './Notifications'
 import { Profile } from './Profile'
-import {
-  getPostsLength,
-  loadPosts,
-  setNextPageToZero,
-} from '../store/actions/postActions'
+// import {
+//   getPostsLength,
+//   loadPosts,
+//   setNextPageToZero,
+// } from '../store/actions/postActions'
 
-export function Main() {
+import { bindActionCreators } from 'redux'
+import { actions } from '../store/allActions'
+
+export const Main: React.FC = () => {
   const dispatch = useDispatch()
 
+  const { loadPosts, getPostsLength, setNextPageToZero } = bindActionCreators(
+    actions,
+    dispatch
+  )
+
   useEffect(() => {
-    dispatch(loadPosts())
-    dispatch(getPostsLength())
+    loadPosts()
+    getPostsLength()
     return () => {
-      dispatch(setNextPageToZero())
+      setNextPageToZero()
     }
   }, [])
 

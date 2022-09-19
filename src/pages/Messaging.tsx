@@ -1,14 +1,19 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCurrPage } from '../store/actions/postActions'
+
+import { bindActionCreators } from 'redux'
+import { actions } from '../store/allActions'
 
 export function Messaging() {
   const dispatch = useDispatch()
+
+  const { setCurrPage } = bindActionCreators(actions, dispatch)
+
   useEffect(() => {
-    dispatch(setCurrPage('messaging'))
+    setCurrPage('messaging')
 
     return () => {
-      dispatch(setCurrPage(''))
+      setCurrPage('')
     }
   }, [])
 

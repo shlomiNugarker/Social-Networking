@@ -3,7 +3,7 @@ import { Home } from './pages/Home'
 import { Main } from './pages/Main'
 import './assets/scss/global.scss'
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="app">

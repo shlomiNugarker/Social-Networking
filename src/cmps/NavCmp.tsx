@@ -4,14 +4,15 @@ import { AiOutlineMessage, AiOutlineMenu } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
+import { RootState } from '../store/index'
 
 export function NavCmp() {
   const history = useHistory()
 
-  const { currPage } = useSelector((state) => state.postModule)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { currPage } = useSelector((state: RootState) => state.postModule)
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
-  const { loggedInUser } = useSelector((state) => state.postModule)
+  const { loggedInUser } = useSelector((state: RootState) => state.postModule)
 
   const openMenu = () => {
     setIsMenuOpen(true)
@@ -25,11 +26,13 @@ export function NavCmp() {
         className={isMenuOpen ? 'bg show-menu ' : 'bg'}
         onClick={closeMMenu}
       ></div>
+
       <div className="menu" onClick={openMenu}>
         <span>
           <AiOutlineMenu />
         </span>
       </div>
+
       <ul className={isMenuOpen ? 'show-menu ' : ''}>
         <li
           className={currPage === 'home' ? 'clicked' : ''}
@@ -42,6 +45,7 @@ export function NavCmp() {
             <p>Home</p>
           </Link>
         </li>
+
         <li
           className={currPage === 'messaging' ? 'clicked' : ''}
           onClick={closeMMenu}
@@ -53,6 +57,7 @@ export function NavCmp() {
             <p>Messaging</p>
           </Link>
         </li>
+
         <li
           className={currPage === 'notifications' ? 'clicked' : ''}
           onClick={closeMMenu}
@@ -64,6 +69,7 @@ export function NavCmp() {
             <p>Notifications</p>
           </Link>
         </li>
+
         <li
           className="profile-img"
           onClick={() => {

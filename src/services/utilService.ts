@@ -1,14 +1,18 @@
+import { Post } from '../models'
+
 export const utilService = {
   saveToStorage,
   loadFromStorage,
   makeId,
 }
 
-function saveToStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value) || null)
+function saveToStorage(key: string, value: Post[]) {
+  if (typeof key !== 'string' && !value) return
+  var valueTostringify = JSON.stringify(value)
+  if (valueTostringify) localStorage.setItem(key, valueTostringify)
 }
 
-function loadFromStorage(key) {
+function loadFromStorage(key: string) {
   let data = localStorage.getItem(key)
   return data ? JSON.parse(data) : undefined
 }

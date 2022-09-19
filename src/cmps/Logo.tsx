@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
 
-export function Logo() {
+export const Logo = () => {
   const history = useHistory()
   return (
     <section

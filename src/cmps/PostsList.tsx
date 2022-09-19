@@ -1,16 +1,26 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostPreview } from './PostPreview'
-import { addPosts, setNextPage } from '../store/actions/postActions'
+import { Post } from '../models'
+import { bindActionCreators } from 'redux'
+import { actions } from '../store/allActions'
 
-export function PostsList({ posts }) {
+import { RootState } from '../store/index'
+
+interface Props {
+  posts: Post[]
+}
+
+export const PostsList: React.FC<Props> = ({ posts }) => {
   const dispatch = useDispatch()
 
-  const { postsLength } = useSelector((state) => state.postModule)
+  const { postsLength } = useSelector((state: RootState) => state.postModule)
+
+  const { setNextPage, addPosts } = bindActionCreators(actions, dispatch)
 
   const onLoadPosts = () => {
-    dispatch(setNextPage())
-    dispatch(addPosts())
+    setNextPage()
+    addPosts()
   }
 
   const handleScroll = () => {
