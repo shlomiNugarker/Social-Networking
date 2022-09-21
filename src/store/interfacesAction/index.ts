@@ -23,6 +23,10 @@ interface AddPostsAction {
   type: ActionType.addPosts
   posts: Post[]
 }
+interface addLikeAction {
+  type: ActionType.savePost
+  post: Post
+}
 interface LoadPostsAction {
   type: ActionType.loadPosts
   posts: Post[]
@@ -39,3 +43,4 @@ export type Action =
   | AddPostsAction
   | LoadPostsAction
   | SendImpressionFromUserAction
+  | addLikeAction

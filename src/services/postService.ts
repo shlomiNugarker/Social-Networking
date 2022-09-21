@@ -8,6 +8,8 @@ export const postService = {
   query,
   getPostsLength,
   sendImpressionFromUser,
+  getById,
+  savePost,
 }
 
 const STORAGE_KEY = 'posts'
@@ -20,6 +22,15 @@ function query(filterBy: any | null = null) {
 async function getPostsLength() {
   const posts: Post[] = await storageService.query(STORAGE_KEY)
   return posts.length
+}
+
+async function getById(postId: string) {
+  const post: Post | undefined = await storageService.get(STORAGE_KEY, postId)
+  return post
+}
+async function savePost(post: Post) {
+  const savedPost = await storageService.put(STORAGE_KEY, post)
+  return savedPost
 }
 
 function _createPosts() {

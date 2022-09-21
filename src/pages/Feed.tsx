@@ -17,7 +17,6 @@ export const Feed: React.FC = () => {
 
   useEffect(() => {
     setCurrPage('home')
-
     return () => {
       setCurrPage('')
       setNextPageToZero()

@@ -76,6 +76,27 @@ export function addPosts() {
   }
 }
 
+export function addLike(postId: string) {
+  return async (dispatch: Dispatch<Action>, getState: any) => {
+    try {
+      const postToUpdate = await postService.getById(postId)
+      if (!postToUpdate) return
+
+      postToUpdate.likes = postToUpdate.didLike
+        ? postToUpdate.likes - 1
+        : postToUpdate.likes + 1
+
+      postToUpdate.didLike = !postToUpdate.didLike
+
+      const savedPost = await postService.savePost(postToUpdate)
+
+      dispatch({ type: ActionType.savePost, post: savedPost })
+    } catch (err) {
+      console.log('err:', err)
+    }
+  }
+}
+
 export function sendImpressionFromUser(userId: string, itemId: string) {
   return async (dispatch: Dispatch<Action>) => {
     try {

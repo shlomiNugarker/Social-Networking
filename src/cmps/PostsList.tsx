@@ -16,11 +16,18 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
 
   const { postsLength } = useSelector((state: RootState) => state.postModule)
 
-  const { setNextPage, addPosts } = bindActionCreators(actions, dispatch)
+  const { setNextPage, addPosts, addLike } = bindActionCreators(
+    actions,
+    dispatch
+  )
 
   const onLoadPosts = () => {
     setNextPage()
     addPosts()
+  }
+
+  const onLikePost = (postId: string) => {
+    addLike(postId)
   }
 
   const handleScroll = () => {
@@ -43,7 +50,7 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
   return (
     <section className="post-list">
       {posts.map((post) => (
-        <PostPreview key={post.id} post={post} />
+        <PostPreview key={post.id} post={post} onLikePost={onLikePost} />
       ))}
 
       {(postsLength !== posts.length && (

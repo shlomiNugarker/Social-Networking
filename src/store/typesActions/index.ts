@@ -4,6 +4,7 @@ export enum ActionType {
   setNextPageToZero = 'setNextPageToZero',
   getPostsLength = 'getPostsLength',
   addPosts = 'addPosts',
+  savePost = 'savePost',
   loadPosts = 'loadPosts',
   sendImpressionFromUser = 'sendImpressionFromUser',
 }

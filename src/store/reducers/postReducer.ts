@@ -60,6 +60,15 @@ export function postReducer(
 
         posts: state.posts ? [...state.posts, ...action.posts] : null,
       }
+    case ActionType.savePost:
+      return {
+        ...state,
+        posts: state.posts
+          ? state.posts.map((post) =>
+              post.id === action.post.id ? action.post : post
+            )
+          : [action.post],
+      }
     default:
       return state
   }

@@ -12,9 +12,10 @@ import { actions } from '../store/allActions'
 
 interface Props {
   post: Post
+  onLikePost: (postId: string) => void
 }
 
-export const PostPreview: React.FC<Props> = ({ post }) => {
+export const PostPreview: React.FC<Props> = ({ post, onLikePost }) => {
   const dispatch = useDispatch()
 
   const [isUserWatchedPost, setisUserWatchedPost] = useState<boolean>(false)
@@ -111,7 +112,7 @@ export const PostPreview: React.FC<Props> = ({ post }) => {
             <span className="like-icon">
               <AiOutlineLike />
             </span>
-            <p className="number">23</p>
+            <p className="number">{post.likes}</p>
           </div>
           <div>
             {post.comments > 0 && <p className="number">{post.comments}</p>}
@@ -121,7 +122,10 @@ export const PostPreview: React.FC<Props> = ({ post }) => {
 
         <div className="post-actions">
           <div className="btns">
-            <div className={'btn-container like-btn ' + likeStyle}>
+            <div
+              onClick={() => onLikePost(post.id)}
+              className={'btn-container like-btn ' + likeStyle}
+            >
               <span>
                 <AiOutlineLike />
               </span>
